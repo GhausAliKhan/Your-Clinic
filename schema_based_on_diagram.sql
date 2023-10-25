@@ -17,7 +17,9 @@ CREATE TABLE medical_histories(
 CREATE TABLE treatments(
     id SERIAL PRIMARY KEY,
     type VARCHAR(100),
-    name VARCHAR(100)?
+    name VARCHAR(100),
+    medical_history_id INT,
+    FOREIGN KEY (medical_history_id) REFERENCES medical_histories(id)
 );
 
 CREATE TABLE invoices(
@@ -26,6 +28,7 @@ CREATE TABLE invoices(
     generated_at TIMESTAMP,
     payed_at TIMESTAMP,
     medical_histories_id INT
+    FOREIGN KEY (medical_history_id) REFERENCES medical_histories(id)
 );
 
 CREATE TABLE invoice_items(
