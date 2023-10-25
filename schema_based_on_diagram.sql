@@ -19,3 +19,11 @@ CREATE TABLE treatments(
     type VARCHAR(100),
     name VARCHAR(100)?
 );
+
+CREATE TABLE invoices(
+    id SERIAL PRIMARY KEY,
+    total_amount DECIMAL,
+    generated_at TIMESTAMP,
+    payed_at TIMESTAMP,
+    medical_histories_id INT
+);
