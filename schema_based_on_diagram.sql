@@ -38,3 +38,15 @@ CREATE TABLE invoice_items(
     FOREIGN KEY(invoice_id) REFERENCES invoices(id),
     FOREIGN KEY(treatment_id) REFERENCES treatments(id)
 );
+
+/* JOINING TABLES */
+
+-- INVOICES - MEDICAL_HISTORIES - PATIENTS
+SELECT patients.name as PatientName, medical_histories.admitted_at as Admitted, invoices.payed_at as Payed FROM invoices
+JOIN medical_histories ON invoices.medical_history_id = medical_histories.id
+JOIN patients ON medical_histories.patient_id = patients.id;
+
+/* TREATMENTS - INVOICES - INVOICE_ITEMS */
+SELECT treatments.name as treatment, invoice_items.quantity, invoices.total_amount FROM invoice_items
+JOIN treatments ON invoice_items.treatment_id = treatments.id
+JOIN invoices ON invoice_items.invoice_id = invoices.id;
