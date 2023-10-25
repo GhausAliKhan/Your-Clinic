@@ -60,3 +60,11 @@ JOIN patients ON medical_histories.patient_id = patients.id;
 SELECT treatments.name as treatment, invoice_items.quantity, invoices.total_amount FROM invoice_items
 JOIN treatments ON invoice_items.treatment_id = treatments.id
 JOIN invoices ON invoice_items.invoice_id = invoices.id;
+
+-- Create the necessary indexes
+CREATE INDEX ON medical_histories (patient_id);
+CREATE INDEX ON invoices (medical_history_id);
+CREATE INDEX ON invoice_items (invoice_id);
+CREATE INDEX ON Invoice_items (treatment_id);
+CREATE INDEX ON medical_histories_has_treatments (medical_history_id);
+CREATE INDEX ON medical_histories_has_treatments (treatment_id);
